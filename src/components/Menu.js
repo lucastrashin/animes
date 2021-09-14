@@ -1,21 +1,33 @@
 import React from "react";
-import { Button } from "@material-ui/core";
-import { Link } from "react-router-dom";
+import {
+  AppBar,
+  Toolbar,
+  IconButton,
+  ListItemSecondaryAction,
+} from "@material-ui/core";
+import { Link as RouterLink } from "react-router-dom";
+import Link from "@material-ui/core/Link";
 
 const Menu = () => {
   return (
     <div>
-      <Button variant="contained" color="primary">
-        <Link to="/Lista">Lista</Link>
-      </Button>
+      <AppBar position="sticky">
+        <Toolbar>
+          <IconButton color="secondary"></IconButton>
 
-      <Button variant="contained" color="primary">
-        <Link to="/">Home</Link>
-      </Button>
+          <Link color="secondary" component={RouterLink} to="/">
+            Home
+          </Link>
 
-      <Button variant="contained" color="secondary">
-        <Link to="/Pesquisa">Pesquisa</Link>
-      </Button>
+          <Link color="secondary" component={RouterLink} to="/pesquisa">
+            Pesquisa
+          </Link>
+
+          <Link color="secondary" component={RouterLink} to="/lista">
+            Lista
+          </Link>
+        </Toolbar>
+      </AppBar>
     </div>
   );
 };
