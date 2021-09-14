@@ -1,4 +1,3 @@
-import { StylesContext } from "@material-ui/styles";
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -17,7 +16,7 @@ const Pesquisa = () => {
     <div>
       <input
         type="text"
-        onChance={(e) => {
+        onChange={(e) => {
           setText(e.target.value);
           console.log(text);
         }}

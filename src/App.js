@@ -1,5 +1,4 @@
-import react from "react";
-import Cards from "./components/cards";
+import Lista from "./components/Lista";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Menu from "./components/Menu";
 import Pesquisa from "./components/Pesquisa";
@@ -13,7 +12,7 @@ function App() {
         <Menu />
 
         <Switch>
-          <Route path="/Pesquisa">
+          <Route path="/pesquisa">
             <Pesquisa></Pesquisa>
           </Route>
 
@@ -21,8 +20,8 @@ function App() {
             <Home></Home>
           </Route>
 
-          <Route path="/Lista">
-            <Cards></Cards>
+          <Route path="/lista">
+            <Lista></Lista>
           </Route>
         </Switch>
       </Router>
