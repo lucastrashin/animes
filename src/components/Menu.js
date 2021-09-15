@@ -11,7 +11,7 @@ import Link from "@material-ui/core/Link";
 const Menu = () => {
   return (
     <div>
-      <AppBar position="sticky">
+      <AppBar position="sticky" color="secondary">
         <Toolbar>
           <IconButton color="secondary"></IconButton>
 

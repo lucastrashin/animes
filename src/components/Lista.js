@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Pagination from "./Pagination";
 
 const Lista = () => {
   const [animes, setAnimes] = useState([]);
@@ -10,9 +11,14 @@ const Lista = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  //NUMERO DE ITENS RENDERIZADOS POR PAG
+  const LIMIT = 12;
+
   const atualizaAnimes = () => {
     axios
-      .get(`https://api.aniapi.com/v1/anime?title=${pesquisa}`)
+      .get(
+        `https://api.aniapi.com/v1/anime?title=${pesquisa}&page[limit]=${LIMIT}`
+      )
       .then((response) => {
         if (response.data.status_code === 404) {
           setAnimes([]);
@@ -48,6 +54,8 @@ const Lista = () => {
     listaDeAnimes = <p>Nenhum anime encontrado :(</p>;
   }
 
+  const [offset, setOffset] = useState(0);
+
   return (
     <div>
       <form
@@ -65,6 +73,12 @@ const Lista = () => {
         <button type="submit">Pesquisar</button>
       </form>
       {listaDeAnimes}
+      <Pagination
+        limit={LIMIT}
+        total={20}
+        offset={offset}
+        setOffset={setOffset}
+      ></Pagination>
     </div>
   );
 };
