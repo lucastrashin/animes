@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Pagination from "./Pagination";
-import ReactPaginate from "react-paginate";
-import "./Pesquisa.css";
+import { Pagination } from "@material-ui/lab";
 
-const Pesquisa = () => {
+const Tentativa3 = () => {
   //RECEBE O FILTRO QUE SERÁ PESQUISADO
   const [pesquisa, setPesquisa] = useState("");
 
@@ -17,7 +15,7 @@ const Pesquisa = () => {
   //RECEBE A RESPONSE DO GET
   const [animes, setAnimes] = useState([]);
 
-  const [numeroPagina, setNumeroPagina] = useState(0);
+  const [count, setCount] = useState(1);
 
   useEffect(() => {
     atualizaAnimes();
@@ -34,6 +32,9 @@ const Pesquisa = () => {
           setAnimes([]);
         } else {
           setAnimes(response.data.data.documents);
+          setCount(response.data.data.last_page);
+          setPagina(response.data.data.current_page);
+          console.log(response);
         }
       })
       .catch((erro) => {
@@ -63,8 +64,8 @@ const Pesquisa = () => {
     listaDeAnimes = <p>Nenhum anime encontrado :(</p>;
   }
 
-  const changePage = ({ selected }) => {
-    setNumeroPagina(selected);
+  const handleChange = (event, value) => {
+    setPagina(value);
   };
 
   return (
@@ -89,25 +90,36 @@ const Pesquisa = () => {
         </form>
 
         {/* FORM DO ITENS POR PAGINA */}
-
-        <form
-          onSubmit={(e) => {
-            atualizaAnimes();
+        <p
+          style={{ padding: 0, marginLeft: 15, marginBottom: 0, marginTop: 0 }}
+        >
+          Itens por página:
+        </p>
+        <select
+          onChange={(e) => {
+            SetItensPorPagina(e.target.value < 0 ? 1 : e.target.value);
           }}
         >
-          <input
-            type="number"
-            onChange={(e) => {
-              SetItensPorPagina(e.target.value);
-            }}
-          ></input>
-          <button type="submit">Número de resultados por página:</button>
-        </form>
+          <option value={1}>1</option>
+          <option value={5}>5</option>
+          <option value={10}>10</option>
+          <option value={20}>20</option>
+          <option value={50}>50</option>
+          <option value={100}>100</option>
+        </select>
       </div>
-
       {listaDeAnimes}
+      <Pagination
+        count={count}
+        size="large"
+        page={pagina}
+        variant="outlined"
+        shape="rounded"
+        onChange={handleChange}
+      />
+      ;
     </div>
   );
 };
 
-export default Pesquisa;
+export default Tentativa3;

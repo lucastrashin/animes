@@ -1,4 +1,4 @@
-import React from "react";
+/* import React from "react";
 import {
   AppBar,
   Toolbar,
@@ -11,7 +11,7 @@ import Link from "@material-ui/core/Link";
 const Menu = () => {
   return (
     <div>
-      <AppBar position="sticky" color="secondary">
+      <AppBar position="sticky">
         <Toolbar>
           <IconButton color="secondary"></IconButton>
 
@@ -33,3 +33,4 @@ const Menu = () => {
 };
 
 export default Menu;
+ */
