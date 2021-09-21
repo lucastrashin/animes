@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Pagination } from "@material-ui/lab";
+import { Link } from "react-router-dom";
 
 const Tentativa3 = () => {
   //RECEBE O FILTRO QUE SERÁ PESQUISADO
@@ -50,10 +51,12 @@ const Tentativa3 = () => {
         {animes.map((anime) => {
           return (
             <div className="margin" key={anime.anilist_id}>
-              <img
-                src={anime.cover_image}
-                alt={anime.titles.en + " cover image"}
-              />
+              <Link to={`/animes/${anime.anilist_id}`}>
+                <img
+                  src={anime.cover_image}
+                  alt={anime.titles.en + " cover image"}
+                />
+              </Link>
               <h3>{anime.titles.en}</h3>
             </div>
           );
@@ -117,7 +120,6 @@ const Tentativa3 = () => {
         shape="rounded"
         onChange={handleChange}
       />
-      ;
     </div>
   );
 };
