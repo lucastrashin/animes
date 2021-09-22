@@ -43,6 +43,7 @@ const Tentativa3 = () => {
       });
   };
   console.log(animes);
+
   let listaDeAnimes;
 
   if (animes.length > 0) {
@@ -51,13 +52,13 @@ const Tentativa3 = () => {
         {animes.map((anime) => {
           return (
             <div className="margin" key={anime.anilist_id}>
-              <Link to={`/animes/${anime.anilist_id}`}>
-                <img
-                  src={anime.cover_image}
-                  alt={anime.titles.en + " cover image"}
-                />
-              </Link>
-              <h3>{anime.titles.en}</h3>
+              <img
+                src={anime.cover_image}
+                alt={anime.titles.en + " cover image"}
+              />
+              <h2>
+                <Link to={`/animes/${anime.id}`}>{anime.titles.en}</Link>
+              </h2>
             </div>
           );
         })}
@@ -94,7 +95,12 @@ const Tentativa3 = () => {
 
         {/* FORM DO ITENS POR PAGINA */}
         <p
-          style={{ padding: 0, marginLeft: 15, marginBottom: 0, marginTop: 0 }}
+          style={{
+            padding: 0,
+            marginLeft: 15,
+            marginBottom: 0,
+            marginTop: 0,
+          }}
         >
           Itens por página:
         </p>
@@ -123,5 +129,4 @@ const Tentativa3 = () => {
     </div>
   );
 };
-
 export default Tentativa3;
